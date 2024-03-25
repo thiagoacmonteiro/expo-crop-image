@@ -33,9 +33,11 @@ export const usePerformCrop = () => {
         height: Math.round(cropSize.height * imageScaleFactor),
       }
       setProcessing(true)
-      const cropResult = await ImageManipulator.manipulateAsync(imageData.uri, [
-        { crop: croppingBounds },
-      ])
+      const cropResult = await ImageManipulator.manipulateAsync(
+        imageData.uri,
+        [{ crop: croppingBounds }],
+        { format: ImageManipulator.SaveFormat.PNG },
+      )
       const { uri, width, height } = cropResult
       setImageData({ uri, width, height })
       setProcessing(false)
